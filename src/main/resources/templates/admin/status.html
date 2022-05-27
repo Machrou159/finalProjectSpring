@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Statistiques</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/semantic-ui/semantic.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/data-tables/dataTables.semanticui.min.css}">	
+	<script type="text/javascript" th:src="@{/lib/jquery/jquery-3.1.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/data-tables/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/data-tables/dataTables.semanticui.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/semantic-ui/semantic.min.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/js/status.js}"></script>
+</head>
+
+<body>
+
+	<!-- top navigation bar -->
+	<div style="background-color: #2596be; overflow: hidden;">
+		<div style="background-color: #2596be" class="ui inverted segment">
+			<div style="border: 1px solid #2596be;"
+				class="ui inverted secondary pointing top menu">
+				<a onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets')" class="item"> <i
+					class="male large icon"></i> Tickets (A)
+				</a> 
+				<a onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets/customers')" class="item"> <i
+					class="user large icon"></i> Utilisateurs
+				</a>
+				<a onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets/urgences')" class="item"> <i
+					class="fire extinguisher large icon"></i> Urgences
+				</a>
+				<a class="active item"> <i
+					class="tint large icon"></i> Statuts
+				</a>
+				<a onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets/environnements')" class="item"> <i
+					class="sitemap large icon"></i> Environnements
+				</a>				
+				<a onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets/softwares')" class="item"> <i
+					class="plug large icon"></i> Logiciels
+				</a>				
+				<a onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets/status')" class="item"> <i
+					class="chart bar large icon"></i> Statistiques
+				</a>
+				<div onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets/statistics')" class="right menu">
+					<a onclick="redirect('/spring-boot-thymeleaf/disconnection')" class="item"> <i
+						class="power off large icon"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br />
+
+	<div style="overflow: auto;" class="ui grid">
+
+		<div class="four wide column"></div>
+
+		<div style="overflow: auto;" class="eight wide column">
+
+			<div style="padding: 10px; background-color: #2596be;"
+				th:onclick="redirect('/spring-boot-thymeleaf/admin/vues/settings/create-status')"
+				class="ui teal labeled icon button">
+				Créer <i class="add icon"></i>
+			</div>
+
+			<br/><br/><br/>
+			
+			<table id="lovs-table" class="ui celled table"
+				style="width: 100%; text-align: center;">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>LABEL</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="lov : ${listOfValues}">
+						<td th:utext="${lov.id}">...</td>
+						<td th:utext="${lov.label}">...</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="four wide column"></div>
+
+	</div>
+</body>
+
+</html>

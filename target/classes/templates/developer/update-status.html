@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+        <meta charset="utf-8" />
+        <title>Mise à jour d'un ticket</title>       	
+       	<link rel="stylesheet" type="text/css" th:href="@{/lib/semantic-ui/semantic.min.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/lib/data-tables/dataTables.semanticui.min.css}">	
+		<script type="text/javascript" th:src="@{/lib/jquery/jquery-3.1.1.min.js}"></script>
+		<script type="text/javascript" th:src="@{/lib/data-tables/jquery.dataTables.min.js}"></script>
+		<script type="text/javascript" th:src="@{/lib/data-tables/dataTables.semanticui.min.js}"></script>
+		<script type="text/javascript" th:src="@{/lib/semantic-ui/semantic.min.js}"></script>
+		<script type="text/javascript" th:src="@{/lib/semantic-ui/components/calendar.min.js}"></script>
+		<script type="text/javascript" th:src="@{/developer/js/update-status.js}"></script>
+</head>
+
+<body>
+    
+	<!-- top navigation bar -->
+	<div style="background-color: #2596be; overflow: hidden;">
+		<div style="background-color: #2596be" class="ui inverted segment">
+			<div style="border: 1px solid #2596be;"
+				class="ui inverted secondary pointing top menu">
+				<a class="active item"> <i
+					class="male large icon"></i> Tickets (C)
+				</a> 
+				<a onclick="redirect('/spring-boot-thymeleaf/developer/vues/tickets/statistics')" class="item"> <i
+					class="chart bar large icon"></i> Statistiques
+				</a>
+				<div class="right menu">
+					<a onclick="redirect('/spring-boot-thymeleaf/disconnection')" class="item"> <i
+						class="power off large icon"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br />
+	
+    <div class="ui grid">
+
+    <div class="three wide column"></div>
+
+    <div class="ten wide column">
+    
+			<form id="sp-ticket-form" class="ui form"
+				th:action="@{/developer/vues/tickets/update-status}"
+				th:object="${ticketForm}" method="POST">
+				<div id="identifier" class="disabled field">
+					<label>N° Ticket</label> <input id="identifier" type="text"
+						name="identifier" th:field="*{id}" 
+						th:data-value="${id}" th:value="${id}"/>
+				</div>
+				<div class="ui floating message">
+					<div id="status-field" class="required field">
+						<label>Status</label>
+						<div id="status-selection"
+							class="ui fluid search selection dropdown">
+							<input id="status-id" type="hidden" name="status-id"
+								th:field="*{status}"> <i class="dropdown icon"></i>
+							<div class="default text">Status</div>
+							<div class="menu">
+								<th:block th:each="ref : ${status}">
+									<div class="item" th:utext="${ref.label}"
+										th:data-value="${ref.id}"></div>
+								</th:block>
+							</div>
+						</div>
+					</div>
+					<br />
+					<button onclick="handleSubmit(); return false;"
+						style="background-color: #2596be; color: white;" class="ui button"
+						type="submit">Mise à jour</button>
+				 </div>
+			</form>
+
+		</div>
+          
+     <div class="three wide column"></div>
+          
+     </div>
+
+</body>
+
+</html>

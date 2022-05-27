@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Tickets</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/semantic-ui/semantic.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/data-tables/dataTables.semanticui.min.css}">	
+	<script type="text/javascript" th:src="@{/lib/jquery/jquery-3.1.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/data-tables/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/data-tables/dataTables.semanticui.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/semantic-ui/semantic.min.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/js/tickets.js}"></script>
+</head>
+
+<body style="background-color: #caccdb;">
+
+	<!-- top navigation bar -->
+	<div style="background-color: black; overflow: hidden;">
+		<div style="background-color: black" class="ui inverted segment">
+			<div style="border: 1px solid black;"
+				class="ui inverted menu">
+				<a class="active item"> <i
+					class="file alternate outline icon"></i> Tickets
+				</a>
+																					 
+				<a onclick="redirect('/spring-boot-thymeleaf/admin/vues/tickets/statistics')" class="item"> <i
+					class="chart bar large icon"></i> Statistiques
+				</a>				
+				<div class="right menu">
+					<a onclick="redirect('/spring-boot-thymeleaf/disconnection')" class="item"> <i> Deconnecter</i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br />
+
+	<div style="overflow: auto;" class="ui grid">
+
+		<div class="one wide column"></div>
+
+		<div style="overflow: auto;" class="fourteen wide column">
+									
+			<br/><br/><br/>
+
+			<table id="users-table" class="ui celled table"
+				style="width: 100%; text-align: center;">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th>N° Ticket</th>
+						<th>Statut</th>
+						<th>Urgence</th>
+						<th>Environnement</th>
+						<th>Logiciel</th>
+						<th>Client</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="ticket : ${tickets}">
+						<tr th:class="${ticket.status.id == 2 ? 'active' : (ticket.urgence.id == 3 ? 'negative' : '')}">
+							<td><i th:id="${ticket.id}" style="cursor: pointer;"
+								th:onclick="deleteTicket(this.id)" class="erase icon"></i></td>
+							<td><i th:id="${ticket.id}" style="cursor: pointer;"
+								th:onclick="updateTicket(this.id)" class="pencil icon"></i></td>
+							<td th:utext="${ticket.id}">...</td>
+							<td th:id="${'st' + ticket.id}" th:utext="${ticket.status}">...</td>
+							<td th:id="${'ur' + ticket.id}"
+								th:class="${ticket.status.id == 2 ? 'active' : (ticket.urgence.id == 1 ? 'positive' : (ticket.urgence.id == 2 ? 'warning' : 'negative'))}"
+								th:utext="${ticket.urgence.label}">...</td>
+							<td th:id="${'en' + ticket.id}"
+								th:utext="${ticket.environment.label}">...</td>
+							<td th:id="${'sf' + ticket.id}"
+								th:utext="${ticket.software.label}">...</td>
+							<td th:id="${'cu' + ticket.id}" th:utext="${ticket.customer}">...</td>
+							<td th:id="${'de' + ticket.id}" th:utext="${ticket.description}">...</td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="one wide column"></div>
+
+	</div>
+</body>
+
+</html>

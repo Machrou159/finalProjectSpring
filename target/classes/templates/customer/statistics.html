@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Statistiques</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/semantic-ui/semantic.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/data-tables/dataTables.semanticui.min.css}">	
+	<script type="text/javascript" th:src="@{/lib/jquery/jquery-3.1.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/data-tables/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/data-tables/dataTables.semanticui.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/semantic-ui/semantic.min.js}"></script>
+	<script type="text/javascript" th:src="@{/customer/js/statistics.js}"></script>
+</head>
+
+<body>
+
+	<!-- top navigation bar -->
+	<div style="background-color: #2596be; overflow: hidden;">
+		<div style="background-color: #2596be" class="ui inverted segment">
+			<div style="border: 1px solid #2596be;"
+				class="ui inverted secondary pointing top menu">
+				<a onclick="redirect('/spring-boot-thymeleaf/customer/vues/tickets')" class="item"> <i
+					class="male large icon"></i> Tickets (C)
+				</a> 
+				<a class="active item"> <i
+					class="chart bar large icon"></i> Statistiques
+				</a>
+				<div class="right menu">
+					<a onclick="redirect('/spring-boot-thymeleaf/disconnection')" class="item"> <i
+						class="power off large icon"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br/><br/><br/>
+
+	<div style="overflow: auto;" class="ui grid">
+
+	<div class="four wide column"></div>
+
+	<div class="eight wide column">
+		
+		<div style="margin: auto" class="ui message">
+			<div class="header">Service administrateur</div>
+			<p>Merci de contacter votre administrateur pour plus d'informations.</p>
+		</div>
+
+	</div>
+
+	<div class="four wide column"></div>
+	
+	</div>
+
+</body>
+
+</html>

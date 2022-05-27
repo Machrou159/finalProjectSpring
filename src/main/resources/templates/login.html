@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/lib/semantic-ui/semantic.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/login/css/login.css}">
+	<script type="text/javascript" th:src="@{/lib/jquery/jquery-3.1.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/lib/semantic-ui/semantic.min.js}"></script>
+	<script type="text/javascript" th:src="@{/login/js/login.js}"></script>
+</head>
+
+<body style="background-color: #caccdb;">
+	
+
+	<!-- Login Form -->
+	<div class="ui middle aligned center aligned grid">
+		<div style="background-color: black; border-radius: 5px;" class="column">
+			<form class="ui large form" th:action="@{/login}" th:object="${loginForm}" method="POST">
+				<div class="ui floating message">
+					<br />
+					<div class="field">
+						<div class="ui left icon input">
+							<i class="user icon"></i> <input type="text" name="login" placeholder="Login" >
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left icon input">
+							<i class="lock icon"></i> <input type="password" name="password" placeholder="Mot de passe">
+						</div>
+					</div>
+					<br />
+					<button class="ui button" type="submit">Connexion</button>
+					<br />
+				</div>
+				
+			</form>
+		</div>
+	</div>
+
+</body>
+
+</html>

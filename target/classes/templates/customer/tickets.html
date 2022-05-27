@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8" />
+<title>Tickets</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/lib/semantic-ui/semantic.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/lib/data-tables/dataTables.semanticui.min.css}">
+<script type="text/javascript"
+	th:src="@{/lib/jquery/jquery-3.1.1.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/lib/data-tables/jquery.dataTables.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/lib/data-tables/dataTables.semanticui.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/lib/semantic-ui/semantic.min.js}"></script>
+<script type="text/javascript" th:src="@{/customer/js/tickets.js}"></script>
+</head>
+
+<body style="background-color: #caccdb;">
+
+	<!-- top navigation bar -->
+	<div style="background-color:black; overflow: hidden;">
+		<div style="background-color: black" class="ui inverted segment">
+			<div style="border: 1px solid black;"
+				class="ui inverted secondary pointing top menu">
+				<a class="active item"> <i class="file alternate outline icon"></i> Tickets
+				</a>
+				<div class="right menu">
+					<a onclick="redirect('/spring-boot-thymeleaf/disconnection')"
+						class="item"><i>Deconnecter</i> </a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br />
+
+	<div style="overflow: auto;" class="ui grid">
+
+		<div class="one wide column"></div>
+
+		<div style="overflow: auto;" class="fourteen wide column">
+
+			<div style="padding: 10px; background-color: black;"
+				th:onclick="redirect('/spring-boot-thymeleaf/customer/vues/tickets/create-ticket')"
+				class="ui teal labeled icon button">
+				Créer un ticket <i class="add icon"></i>
+			</div>
+
+			<br />
+			<br />
+			<br />
+
+			<table id="users-table" class="ui celled table"
+				style="width: 100%; text-align: center;">
+				<thead>
+					<tr>
+						<th>N° Ticket</th>
+						<th>Status</th>
+						<th>Urgence</th>
+						<th>Environnement</th>
+						<th>Logiciel</th>
+						<th>Développeur</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="ticket : ${tickets}">
+						<tr
+							th:class="${ticket.status.id == 2 ? 'active' : (ticket.urgence.id == 3 ? 'negative' : '')}">
+							<td th:utext="${ticket.id}">...</td>
+							<td th:utext="${ticket.status}">...</td>
+							<td
+								th:class="${ticket.status.id == 2 ? 'active' : (ticket.urgence.id == 1 ? 'positive' : (ticket.urgence.id == 2 ? 'warning' : 'negative'))}"
+								th:utext="${ticket.urgence.label}">...</td>
+							<td th:utext="${ticket.environment.label}">...</td>
+							<td th:utext="${ticket.software.label}">...</td>
+							<td th:utext="${ticket.developer}">...</td>
+							<td th:utext="${ticket.description}">...</td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="one wide column"></div>
+
+	</div>
+</body>
+
+</html>
